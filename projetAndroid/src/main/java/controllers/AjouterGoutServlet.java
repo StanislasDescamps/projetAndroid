@@ -38,9 +38,15 @@ public class AjouterGoutServlet extends HttpServlet {
 		String nomActivite=request.getParameter("nomActivite");
 		String lieu=request.getParameter("lieu");
 		
+		/////////////Comment on recupère l'id de l'utilisateur ?////////////////////
+		Integer idUtilisateur=0;
 		
 		Gout nouveauGout= new Gout(null,nomActivite, idgenre, lieu);
 		Manager.getInstance().ajouterGout(nouveauGout);
+		
+		Integer idGout=Manager.getInstance().getGoutByName(nomActivite).getIdGout();
+		
+		Manager.getInstance().voteGout(idUtilisateur, idGout , 1);  //nullPointerException? 
 		
 	}
 }
