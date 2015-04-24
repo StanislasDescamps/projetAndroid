@@ -33,6 +33,10 @@ public class Manager {
 	
 	//Utilisateur
 	
+	public List<Utilisateur> listerUtilisateur(){
+		return utilisateurDao.listerUtilisateur();
+	}
+	
 	public List<Utilisateur> listerAuthentifiant(){
 		return utilisateurDao.listerAuthentifiant();
 	}
@@ -41,6 +45,9 @@ public class Manager {
 	}
 	public void ajouterUtilisateur(Utilisateur utilisateur) {
 		utilisateurDao.ajouterUtilisateur(utilisateur);
+	}
+	public Utilisateur getUtilisateur(Integer idUtilisateur){
+		return utilisateurDao.getUtilisateur(idUtilisateur);
 	}
 	
 	//Langue
@@ -52,6 +59,9 @@ public class Manager {
 		langueDao.ajouterChoixLangue(idUtilisateur,idLangue);
 	}
 	
+	public List<Langue> listerLangueByUtilisateur(Integer idUtilisateur){
+		return langueDao.listerLangueByUtilisateur(idUtilisateur);
+	}
 	//Gout
 	public List<Gout> listerGout(){
 		return goutDao.listerGout();

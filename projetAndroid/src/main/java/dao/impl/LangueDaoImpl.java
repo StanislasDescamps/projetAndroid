@@ -54,4 +54,24 @@ public class LangueDaoImpl implements LangueDao{
 		
 	}
 
+	@Override
+	public List<Langue> listerLangueByUtilisateur(Integer idUtilisateur) {
+		List<Langue> listeLangue = new ArrayList<Langue>();
+	    try {
+	    	Connection connection = DataSourceProvider.getDataSource().getConnection();
+	    	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM langues INNER JOIN doubletLangue ON langue.idLangue=doubletLangue.idLangue WHERE doubletLangue.idUtilisateur=?");
+	    	stmt.setInt(1, idUtilisateur);
+	    	ResultSet results = stmt.executeQuery();
+	    	while (results.next()) {
+	    		Langue langue = new Langue(results.getInt("idLangue"),
+	                    results.getString("nomLangue"));
+	    		listeLangue.add(langue);
+	    }
+		connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return listeLangue;
+	}
+
 }

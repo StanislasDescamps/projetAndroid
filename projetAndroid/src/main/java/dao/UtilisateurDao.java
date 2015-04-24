@@ -11,5 +11,5 @@ public interface UtilisateurDao {
 	public boolean utilisateurExiste(String mail, String password); //verifie qu'un utilisateur existe bien
 	public Utilisateur getUtilisateur(Integer idUtilisateur); //recupère les informations d'un utilisateur
 	public void ajouterUtilisateur(Utilisateur utilisateur); //création d'un profil
-	
+	public List<Utilisateur> listerUtilisateurByLangues(Integer idLangue); //permet de récupérer les utilisateurs parlant cette langues
 }

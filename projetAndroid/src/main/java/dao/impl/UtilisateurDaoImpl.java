@@ -16,8 +16,28 @@ import main.java.model.Utilisateur;
 public class UtilisateurDaoImpl implements UtilisateurDao{
 
 	public List<Utilisateur> listerUtilisateur() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
+	    try {
+	    	Connection connection = DataSourceProvider.getDataSource().getConnection();
+	    	Statement stmt = connection.createStatement();
+	    	ResultSet results = stmt.executeQuery("SELECT * FROM utilisateur");
+	    while (results.next()) {
+	    	Utilisateur utilisateur = new Utilisateur(results.getInt("idUtilisateur"),
+	    			results.getString("pseudo"),
+	    			results.getString("email"), 
+	                results.getInt("sexe"),
+	                results.getInt("age"),
+	                results.getString("domicile"),
+	                results.getString("position"),
+	                results.getString("image"),
+	                results.getBoolean("communication"));
+	    	listeUtilisateur.add(utilisateur);
+	    }
+		connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return listeUtilisateur;
 	}
 
 	public List<Utilisateur> listerAuthentifiant() {
@@ -119,5 +139,33 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	        e.printStackTrace();
 	    }
 		
+	}
+
+	@Override
+	public List<Utilisateur> listerUtilisateurByLangues(Integer idLangue) {
+		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
+	    try {
+	    	Connection connection = DataSourceProvider.getDataSource().getConnection();
+	    	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM Utilisateur INNER JOIN doubletLangue ON utilisateur.idUtilisateur=doubletLangue.idUtilisateur WHERE doubletLangue.idLangue=?");
+	    	stmt.setInt(1, idLangue);
+	    	ResultSet results = stmt.executeQuery();
+	    	while (results.next()) {
+	    		Utilisateur utilisateur = new Utilisateur(results.getInt("idEtudiant"),
+	                    results.getString("password"),
+	                    results.getString("pseudo"),
+	                    results.getString("email"),
+	                    results.getInt("sexe"),
+	                    results.getInt("age"),
+	                    results.getString("regionOrigine"),
+	                    results.getString("position"),
+	                    results.getString("image"),
+	                    results.getBoolean("communication"));
+	    		listeUtilisateur.add(utilisateur);
+	    }
+		connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return listeUtilisateur;
 	}
 }
