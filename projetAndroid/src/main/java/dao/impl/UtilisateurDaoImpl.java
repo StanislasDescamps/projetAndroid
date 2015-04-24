@@ -95,4 +95,29 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	    }
 	    return utilisateur;
 	}
+
+	public void ajouterUtilisateur(Utilisateur utilisateur) {
+		try {
+	        Connection connection = 
+	            DataSourceProvider.getDataSource().getConnection();
+
+	        // Utiliser la connexion
+	        PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(
+	                  "INSERT INTO `utilisateur`( `password`, `pseudo`, `email`, `sexe`, `age`, `regionOrigine`,`image`, `communication`) VALUES(?, ?, ?, ?, ?, ?,?,?)"); 
+	        stmt.setString(1, utilisateur.getPassword());
+	        stmt.setString(2, utilisateur.getPseudo());
+	        stmt.setString(3, utilisateur.getEmail());
+	        stmt.setInt(4, utilisateur.getSexe());
+	        stmt.setInt(5,utilisateur.getAge());
+	        stmt.setString(6, utilisateur.getDomicile());
+	        stmt.setString(7, utilisateur.getImage());
+	        stmt.setBoolean(8, utilisateur.isCommunication());
+	        stmt.executeUpdate();
+	        // Fermer la connexion
+	        connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		
+	}
 }

@@ -36,4 +36,7 @@ public class Manager {
 	public boolean utilisateurtExiste(String mail, String password){
 		return utilisateurDao.utilisateurExiste(mail, password);
 	}
+	public void ajouterUtilisateur(Utilisateur utilisateur) {
+		utilisateurDao.ajouterUtilisateur(utilisateur);
+	}
 }
