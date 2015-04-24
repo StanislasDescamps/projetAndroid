@@ -32,6 +32,11 @@ public class Utilisateur {
 		this.password=password;
 	}
 	
+	public Utilisateur(String mail, String password){
+		this.email=mail;
+		this.password=password;
+	}
+	
 	public Integer getIdUtilisateur() {
 		return idUtilisateur;
 	}
