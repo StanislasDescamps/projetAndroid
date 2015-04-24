@@ -50,8 +50,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			stmt.setString(2, password);
 
 			ResultSet results = stmt.executeQuery();
-            	if (results.first())
-            	{
+            	if (results.first()){
             		return true;
             	}
             
@@ -59,9 +58,10 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
             	connection.close();
             } catch (SQLException e) {
             e.printStackTrace();
-            }
-            return false;
-		}
+          }
+         return false;
+	}
+	
 	public Utilisateur getUtilisateur(Integer idUtilisateur) {
 		Utilisateur utilisateur= null;
 		// Cr�er une nouvelle connexion � la BDD
