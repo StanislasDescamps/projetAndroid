@@ -17,6 +17,13 @@ public class Gout {
 		this.voteOui=oui;
 		this.voteNon=non;
 	}
+	
+	public Gout(Integer idgout, String nomgout, Integer idgenre, String adresse){
+		this.idGout=idgout;
+		this.libelleGout=nomgout;
+		this.idGenre=idgenre;
+		this.lieu=adresse;
+	}
 
 	public Integer getIdGout() {
 		return idGout;
