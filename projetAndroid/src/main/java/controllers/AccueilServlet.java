@@ -25,7 +25,7 @@ public class AccueilServlet extends HttpServlet{
 		Gson gson1 = new Gson();
 		//Gson gson2 = new Gson();
 		
-		String pos="geolocalisation";
+		String pos="geolocalisation"; //comment qu'on fait?
 		
 		String json1 = gson1.toJson(Manager.getInstance().listerGoutByLieu(pos));
 		//String json2 = gson2.toJson(Manager.getInstance().listerUtilisateurArround());
