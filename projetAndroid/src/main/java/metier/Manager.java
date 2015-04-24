@@ -10,6 +10,8 @@ import main.java.dao.impl.GenreDaoImpl;
 import main.java.dao.impl.GoutDaoImpl;
 import main.java.dao.impl.LangueDaoImpl;
 import main.java.dao.impl.UtilisateurDaoImpl;
+import main.java.model.Gout;
+import main.java.model.Langue;
 import main.java.model.Utilisateur;
 
 public class Manager {
@@ -38,5 +40,23 @@ public class Manager {
 	}
 	public void ajouterUtilisateur(Utilisateur utilisateur) {
 		utilisateurDao.ajouterUtilisateur(utilisateur);
+	}
+	
+	//Langue
+	public List<Langue> listerLangue(){
+		return langueDao.listerLangue();
+	}
+	
+	public void ajouterChoixLangue(Integer idUtilisateur, Integer idLangue){
+		langueDao.ajouterChoixLangue(idUtilisateur,idLangue);
+	}
+	
+	//Gout
+	public List<Gout> listerGout(){
+		return goutDao.listerGout();
+	}
+	
+	public void ajouterGout(Gout gout){
+		goutDao.ajouterGout(gout);
 	}
 }
