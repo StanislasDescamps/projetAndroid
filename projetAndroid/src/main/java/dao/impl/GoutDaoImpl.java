@@ -68,17 +68,24 @@ public class GoutDaoImpl implements GoutDao{
 	        PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(
 	                  "INSERT INTO `doubletVote`( `idActivite`,`idUtilisateur`,`valeurVote` ) VALUES(?, ?, ?)"); 
 	        
+	        
+	        
 	        stmt.setInt(1,idGout);
 	        stmt.setInt(2,idUtilisateur);
 	        stmt.setInt(3,valeur);
 	        stmt.executeUpdate();
 	        // Fermer la connexion
 	        connection.close();
+	        
+	        if(valeur==1){
+	        	incrementeVoteOui(idGout);
+	        }else{
+	        	incrementeVoteNon(idGout);
+	        }
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-		
-		
 	}
 
 	public Gout getGoutByName(String nomGout) {
