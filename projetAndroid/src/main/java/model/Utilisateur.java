@@ -26,6 +26,18 @@ public class Utilisateur {
 		this.communication=comm;
 	}
 	
+	public Utilisateur(Integer idUser, String pass, String pseudo, String mail, Integer sexe, Integer age, String origine, String logo, boolean comm){
+		this.idUtilisateur=idUser;
+		this.password=pass;
+		this.pseudo=pseudo;
+		this.email=mail;
+		this.sexe=sexe;
+		this.age=age;
+		this.domicile=origine;
+		this.image=logo;
+		this.communication=comm;
+	}
+	
 	public Utilisateur(String mail, String pseudo, String password){
 		this.email=mail;
 		this.pseudo=pseudo;
