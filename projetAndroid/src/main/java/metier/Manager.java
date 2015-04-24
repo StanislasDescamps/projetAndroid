@@ -57,6 +57,10 @@ public class Manager {
 		return goutDao.listerGout();
 	}
 	
+	public List<Gout> listerGoutByLieu(String lieu){
+		return goutDao.listerGoutByLieu(lieu);
+	}
+	
 	public void ajouterGout(Gout gout){
 		goutDao.ajouterGout(gout);
 	}

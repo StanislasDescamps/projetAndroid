@@ -150,4 +150,27 @@ public class GoutDaoImpl implements GoutDao{
 		
 	}
 
+	public List<Gout> listerGoutByLieu(String lieu) {
+		List<Gout> listeGout = new ArrayList<Gout>();
+	    try {
+	    	Connection connection = DataSourceProvider.getDataSource().getConnection();
+	    	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM activite WHERE lieu=?");
+	    	stmt.setString(1, lieu);
+	    	ResultSet results = stmt.executeQuery();
+	    	while (results.next()) {
+	    		Gout gout = new Gout(results.getInt("idActivite"), 
+	                   results.getString("libelleActivite"),
+	                   results.getInt("idGenre"),
+	                   results.getString("lieu"),
+	                   results.getInt("voteOui"),
+	                   results.getInt("voteNon"));
+	    		listeGout.add(gout);
+	    }
+		connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return listeGout;
+	}
+
 }
