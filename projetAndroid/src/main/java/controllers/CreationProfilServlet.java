@@ -58,6 +58,18 @@ public class CreationProfilServlet extends HttpServlet{
 		{
 			Utilisateur nouvelUtilisateur = new Utilisateur(null, password, pseudo, email, sexe, age, origine,image,true);
 			Manager.getInstance().ajouterUtilisateur(nouvelUtilisateur);
+			
+			//Récupération de tous les éléments cochés et ajout dans une liste de format string
+			String[] choixLangue = request.getParameterValues("langues");
+			for(int j=0;j<choixLangue.length;j++)
+			{
+				/////////////////////////////////////////////Comment recupérer l'id de l'utilisateur/////////////////
+				Integer idUtilisateur=0;
+				//Ajout du choix de l'utilisateur dans la base de données
+				Integer idLangue=Integer.parseInt(choixLangue[i]);
+				Manager.getInstance().ajouterChoixLangue(idUtilisateur,idLangue);
+				
+			}
 		}
 	}
 		
