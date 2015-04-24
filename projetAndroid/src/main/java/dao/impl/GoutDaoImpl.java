@@ -59,4 +59,88 @@ public class GoutDaoImpl implements GoutDao{
 		
 	}
 
+	public void voteGout(Integer idUtilisateur, Integer idGout, Integer valeur) {
+		try {
+	        Connection connection = 
+	            DataSourceProvider.getDataSource().getConnection();
+	
+	        // Utiliser la connexion
+	        PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(
+	                  "INSERT INTO `doubletVote`( `idActivite`,`idUtilisateur`,`valeurVote` ) VALUES(?, ?, ?)"); 
+	        
+	        stmt.setInt(1,idGout);
+	        stmt.setInt(2,idUtilisateur);
+	        stmt.setInt(3,valeur);
+	        stmt.executeUpdate();
+	        // Fermer la connexion
+	        connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		
+		
+	}
+
+	public Gout getGoutByName(String nomGout) {
+		Gout gout = null;
+	    try {
+	    	Connection connection = DataSourceProvider.getDataSource().getConnection();
+	    
+	    	PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM activite WHERE libelleActivite =?");
+	    	stmt.setString(1, nomGout);
+	    	ResultSet results = stmt.executeQuery();
+	    while (results.next()) {
+	    	gout = new Gout(results.getInt("idActivite"), 
+	                results.getString("nomActivite"),
+	                results.getInt("idGenre"),
+	                results.getString("lieu"),
+	                results.getInt("voteOui"),
+	                results.getInt("voteNon"));
+	    }
+		connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		return gout;
+	}
+
+	public void incrementeVoteOui(Integer idGout) {
+		try {
+	        Connection connection = 
+	            DataSourceProvider.getDataSource().getConnection();
+	
+	        // Utiliser la connexion
+	        PreparedStatement stmt1 = (PreparedStatement) connection.prepareStatement(
+	                  "UPDATE `activite` SET `voteOui`= voteOui+1 WHERE `idActivite`=?");
+	        
+	        stmt1.setInt(1,idGout);
+	        
+	        stmt1.executeUpdate();
+	        // Fermer la connexion
+	        connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	public void incrementeVoteNon(Integer idGout) {
+		try {
+	        Connection connection = 
+	            DataSourceProvider.getDataSource().getConnection();
+	
+	        // Utiliser la connexion
+	        PreparedStatement stmt1 = (PreparedStatement) connection.prepareStatement(
+	                  "UPDATE `activite` SET `voteNon`= voteNon+1 WHERE `idActivite`=?");
+	        
+	        stmt1.setInt(1,idGout);
+	        
+	        stmt1.executeUpdate();
+	        // Fermer la connexion
+	        connection.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+		
+	}
+
 }

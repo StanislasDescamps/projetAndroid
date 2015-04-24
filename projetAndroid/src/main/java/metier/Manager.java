@@ -10,6 +10,7 @@ import main.java.dao.impl.GenreDaoImpl;
 import main.java.dao.impl.GoutDaoImpl;
 import main.java.dao.impl.LangueDaoImpl;
 import main.java.dao.impl.UtilisateurDaoImpl;
+import main.java.model.Genre;
 import main.java.model.Gout;
 import main.java.model.Langue;
 import main.java.model.Utilisateur;
@@ -58,5 +59,30 @@ public class Manager {
 	
 	public void ajouterGout(Gout gout){
 		goutDao.ajouterGout(gout);
+	}
+	
+	public void voteGout(Integer idUtilisateur, Integer idGout, Integer valeur){
+		goutDao.voteGout(idUtilisateur,idGout, valeur);
+	}
+	
+	public Gout getGoutByName(String nomGout){
+		return goutDao.getGoutByName(nomGout);
+	}
+	
+	public void incrementeVoteOui(Integer idGout){
+		goutDao.incrementeVoteOui(idGout);
+	}
+	
+	public void incrementeVoteNon(Integer idGout){
+		goutDao.incrementeVoteNon(idGout);
+	}
+	
+	//Genre
+	public List<Genre> listerGenre(){
+		return genreDao.listerGenre();
+	}
+	
+	public void ajouterChoixGenre(Integer idUtilisateur, Integer idGenre){
+		genreDao.ajouterChoixGenre(idUtilisateur,idGenre);
 	}
 }

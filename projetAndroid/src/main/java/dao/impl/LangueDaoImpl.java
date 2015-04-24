@@ -12,7 +12,6 @@ import com.mysql.jdbc.PreparedStatement;
 import main.java.dao.DataSourceProvider;
 import main.java.dao.LangueDao;
 import main.java.model.Langue;
-import main.java.model.Utilisateur;
 
 public class LangueDaoImpl implements LangueDao{
 
