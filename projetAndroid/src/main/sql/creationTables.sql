@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `email` varchar(50) NOT NULL,
   `sexe` int(11) NOT NULL,
   `age` int(11) NOT NULL,
-  `régionOrigine` varchar(50) NOT NULL,
+  `regionOrigine` varchar(50) NOT NULL,
   `position` varchar(50) NOT NULL,
   `image` varchar(100) NOT NULL,
   `communication` tinyint(1) NOT NULL,
