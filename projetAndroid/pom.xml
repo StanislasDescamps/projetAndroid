@@ -4,7 +4,7 @@
   <artifactId>projetAndroid</artifactId>
   <version>0.0.1-SNAPSHOT</version>
    <packaging>war</packaging>
-  <name>MeetOtherErasmus</name>
+  <name>OutOfHome</name>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
