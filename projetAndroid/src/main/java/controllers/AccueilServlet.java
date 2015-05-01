@@ -24,7 +24,8 @@ public class AccueilServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Integer idUtilisateur=0;
+		Integer idUtilisateur=Integer.parseInt(request.getParameter("idUtilisateur"));
+		
 		//Recupération de tous les utilisateur (-l'utilisateurActuel)
 		Utilisateur utilisateurActuel=Manager.getInstance().getUtilisateur(idUtilisateur);	
 		List<Utilisateur> toutUtilisateur=Manager.getInstance().listerUtilisateur();
