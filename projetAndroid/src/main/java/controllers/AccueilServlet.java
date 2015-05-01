@@ -34,11 +34,14 @@ public class AccueilServlet extends HttpServlet{
 		List<Utilisateur> listeUtilisateurArround=new ArrayList<>();
 		Integer rayon=40000; //distance du rayon en m
 		
+		/*//adapter le code suivant la geolocalisation
 		for(Utilisateur utilisateur : toutUtilisateur){
 			if(distanceTo(convert(utilisateur.getPosition())) <= rayon){  //voir comment ça marche
 				listeUtilisateurArround.add(utilisateur);
 			}
 		}
+		*/
+		
 		//Initialisation de la liste finale
 		List<Utilisateur> newListeUtilisateurArround=new ArrayList<Utilisateur>();
 		
@@ -66,7 +69,7 @@ public class AccueilServlet extends HttpServlet{
 		
 		String pos="geolocalisation"; //comment qu'on fait?
 		
-		String json1 = gson1.toJson(Manager.getInstance().listerGoutByLieu(pos));
+		String json1 = gson1.toJson(Manager.getInstance().listerActiviteByLieu(pos));
 		String json2 = gson2.toJson(newListeUtilisateurArround);
 		
 		PrintWriter out = response.getWriter();

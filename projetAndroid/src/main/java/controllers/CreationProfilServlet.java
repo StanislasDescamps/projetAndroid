@@ -36,6 +36,7 @@ public class CreationProfilServlet extends HttpServlet{
 		Integer age=Integer.parseInt(request.getParameter("age"));
 		String image=request.getParameter("image");
 		String origine=request.getParameter("origine");
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		//Récupération de tous les étudiant dans une liste
 		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();

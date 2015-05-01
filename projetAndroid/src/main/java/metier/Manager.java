@@ -3,15 +3,15 @@ package main.java.metier;
 import java.util.List;
 
 import main.java.dao.GenreDao;
-import main.java.dao.GoutDao;
+import main.java.dao.ActiviteDao;
 import main.java.dao.LangueDao;
 import main.java.dao.UtilisateurDao;
 import main.java.dao.impl.GenreDaoImpl;
-import main.java.dao.impl.GoutDaoImpl;
+import main.java.dao.impl.ActiviteDaoImpl;
 import main.java.dao.impl.LangueDaoImpl;
 import main.java.dao.impl.UtilisateurDaoImpl;
 import main.java.model.Genre;
-import main.java.model.Gout;
+import main.java.model.Activite;
 import main.java.model.Langue;
 import main.java.model.Utilisateur;
 
@@ -20,7 +20,7 @@ public class Manager {
 	private static Manager instance;
 	
 	private GenreDao genreDao = (GenreDao) new GenreDaoImpl();
-	private GoutDao goutDao = (GoutDao) new GoutDaoImpl();
+	private ActiviteDao activiteDao = (ActiviteDao) new ActiviteDaoImpl();
 	private LangueDao langueDao = (LangueDao) new LangueDaoImpl();
 	private UtilisateurDao utilisateurDao = (UtilisateurDao) new UtilisateurDaoImpl();
 	
@@ -62,33 +62,33 @@ public class Manager {
 	public List<Langue> listerLangueByUtilisateur(Integer idUtilisateur){
 		return langueDao.listerLangueByUtilisateur(idUtilisateur);
 	}
-	//Gout
-	public List<Gout> listerGout(){
-		return goutDao.listerGout();
+	//Activite
+	public List<Activite> listerActivite(){
+		return activiteDao.listerActivite();
 	}
 	
-	public List<Gout> listerGoutByLieu(String lieu){
-		return goutDao.listerGoutByLieu(lieu);
+	public List<Activite> listerActiviteByLieu(String lieu){
+		return activiteDao.listerActiviteByLieu(lieu);
 	}
 	
-	public void ajouterGout(Gout gout){
-		goutDao.ajouterGout(gout);
+	public void ajouterActivite(Activite gout){
+		activiteDao.ajouterActivite(gout);
 	}
 	
-	public void voteGout(Integer idUtilisateur, Integer idGout, Integer valeur){
-		goutDao.voteGout(idUtilisateur,idGout, valeur);
+	public void voteActivite(Integer idUtilisateur, Integer idGout, Integer valeur){
+		activiteDao.voteActivite(idUtilisateur,idGout, valeur);
 	}
 	
-	public Gout getGoutByName(String nomGout){
-		return goutDao.getGoutByName(nomGout);
+	public Activite getActiviteByName(String nomActivite){
+		return activiteDao.getActiviteByName(nomActivite);
 	}
 	
 	public void incrementeVoteOui(Integer idGout){
-		goutDao.incrementeVoteOui(idGout);
+		activiteDao.incrementeVoteOui(idGout);
 	}
 	
 	public void incrementeVoteNon(Integer idGout){
-		goutDao.incrementeVoteNon(idGout);
+		activiteDao.incrementeVoteNon(idGout);
 	}
 	
 	//Genre
