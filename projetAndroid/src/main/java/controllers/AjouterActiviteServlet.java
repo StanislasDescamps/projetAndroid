@@ -22,7 +22,7 @@ public class AjouterActiviteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		Gson gson = new Gson();
-		String json = gson.toJson(Manager.getInstance().listerActivite());
+		String json = gson.toJson(Manager.getInstance().listerGenre());
 		PrintWriter out = response.getWriter();
 		out.append(json);
 	}
@@ -38,8 +38,8 @@ public class AjouterActiviteServlet extends HttpServlet {
 		String nomActivite=request.getParameter("nomActivite");
 		String lieu=request.getParameter("lieu");
 		
-		/////////////Comment on recupère l'id de l'utilisateur ?////////////////////
-		Integer idUtilisateur=0;
+		//Récupération de l'identifiant de l'utilisateur
+		Integer idUtilisateur=Integer.parseInt(request.getParameter("idUtilisateur"));
 		
 		Activite nouveauGout= new Activite(null,nomActivite, idgenre, lieu);
 		Manager.getInstance().ajouterActivite(nouveauGout);
